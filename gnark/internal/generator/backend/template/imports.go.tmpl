@@ -1,0 +1,67 @@
+{{- define "import_fr" }}
+	{{- if eq .Curve "tinyfield"}}
+	fr "github.com/consensys/gnark/internal/tinyfield"	
+	{{- else}}
+	"github.com/consensys/gnark-crypto/ecc/{{toLower .Curve}}/fr"
+	{{- end}}
+{{- end }}
+
+{{- define "import_fri" }}
+	"github.com/consensys/gnark-crypto/ecc/{{toLower .Curve}}/fr/fri"
+{{- end}}
+
+{{- define "import_curve" }}
+	{{- if ne .Curve "tinyfield"}}
+	curve "github.com/consensys/gnark-crypto/ecc/{{toLower .Curve}}"
+	{{- else }}
+	"github.com/consensys/gnark-crypto/ecc"
+	{{- end}}
+{{- end }}
+
+{{- define "import_backend_cs" }}
+	{{- if eq .Curve "tinyfield"}}
+	"github.com/consensys/gnark/constraint/tinyfield"
+	{{- else}}
+	cs "github.com/consensys/gnark/constraint/{{toLower .Curve}}"
+	{{- end}}
+{{- end }}
+
+{{- define "import_fft" }}
+	"github.com/consensys/gnark-crypto/ecc/{{toLower .Curve}}/fr/fft"
+{{- end }}
+
+{{- define "import_witness" }}
+	{{- if eq .Curve "tinyfield"}}
+	{{toLower .CurveID}}witness "github.com/consensys/gnark/internal/tinyfield/witness"
+	{{- else}}
+	{{toLower .CurveID}}witness "github.com/consensys/gnark/internal/backend/{{toLower .Curve}}/witness"
+	{{- end}}
+{{- end }}
+
+{{- define "import_groth16" }}
+	{{toLower .CurveID}}groth16 "github.com/consensys/gnark/internal/backend/{{toLower .Curve}}/groth16"
+{{- end }}
+
+{{- define "import_plonk" }}
+	{{toLower .CurveID}}plonk "github.com/consensys/gnark/internal/backend/{{toLower .Curve}}/plonk"
+{{- end }}
+
+{{- define "import_polynomial" }}
+	"github.com/consensys/gnark-crypto/ecc/{{ toLower .Curve }}/fr/polynomial"
+{{- end }}
+
+{{- define "import_kzg" }}
+	"github.com/consensys/gnark-crypto/ecc/{{ toLower .Curve }}/kzg"
+{{- end }}
+
+{{- define "import_pedersen"}}
+	"github.com/consensys/gnark-crypto/ecc/{{ toLower .Curve }}/fr/pedersen"
+{{- end}}
+
+{{- define "import_gkr"}}
+	"github.com/consensys/gnark-crypto/ecc/{{ toLower .Curve }}/fr/gkr"
+{{- end}}
+
+{{- define "import_hash_to_field" }}
+	"github.com/consensys/gnark-crypto/ecc/{{ toLower .Curve}}/fr/hash_to_field"
+{{- end}}
